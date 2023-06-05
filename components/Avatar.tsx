@@ -38,7 +38,6 @@ const Avatar: React.FC<AvatarProps> = ({
             relative
         `}
         >
-
             <Image
                 fill
                 style={{
@@ -49,7 +48,6 @@ const Avatar: React.FC<AvatarProps> = ({
                 onClick={onClick}
                 src={fetchedUser?.profileImage || "/images/placeholder.png"}    
             />
-
         </div>
     );
 }
