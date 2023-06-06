@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             throw new Error("User not found")
         }
 
-        let updatedFollowingIds = [...(user.followingIds || [])]
+        let updatedFollowingIds = [...(currentUser.followingIds || [])]
 
         if (req.method === "POST") {
             updatedFollowingIds.push(userId);
