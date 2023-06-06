@@ -6,7 +6,7 @@ import usePost from '@/hooks/usePost';
 import Header from '@/components/Header';
 import PostItem from '@/components/posts/PostItem';
 import Form from '@/components/Form';
-// import CommentFeed from '@/components/posts/CommentFeed';
+import CommentFeed from '@/components/posts/CommentFeed';
 
 const PostView = () => {
     const router = useRouter();
@@ -27,7 +27,7 @@ const PostView = () => {
             <Header label="Post" showBackArrow/>
             <PostItem data={fetchedPost} />
             <Form postId={postId as string} isComment placeholder="Comment on this post..." />
-            {/* <CommentFeed comments={fetchedPost?.comments} /> */}
+            <CommentFeed comments={fetchedPost?.comments} />
         </>
     );
 }
