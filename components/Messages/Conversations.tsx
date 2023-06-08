@@ -74,7 +74,7 @@ const Conversations: React.FC<ConversationsProps> = ({
             <br></br><br></br>
             <hr className="border-neutral-700"></hr>
             <br></br>
-            Click on someone's profile and send them a message!
+            Click on someone’s profile and send them a message!
           </p>
         </div>
       </div>
