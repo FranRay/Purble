@@ -1,85 +1,89 @@
-import serverAuth from "@/libs/serverAuth";
-import prisma from "@/libs/prismadb";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== "POST" && req.method !== "DELETE") {
-        return res.status(405).end();
+import serverAuth from "@/libs/serverAuth";
+import prisma from "@/libs/prismadb";
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (req.method !== "POST" && req.method !== "DELETE") {
+    return res.status(405).end();
+  }
+
+  try {
+    const { postId } = req.body;
+
+    const { currentUser } = await serverAuth(req);
+
+    if (!postId || typeof postId !== "string") {
+      throw new Error("Invalid ID");
     }
 
-    try {
-        const postId = req.method === 'POST' ? req.body.postId : req.query.postId;
+    const post = await prisma.post.findUnique({
+      where: {
+        id: postId,
+      },
+    });
 
-        const { currentUser } = await serverAuth(req, res);
+    if (!post) {
+      throw new Error("Invalid ID");
+    }
 
-        if (!postId || typeof postId !== "string") {
-            throw new Error("Invalid postId")
-        }
+    let updatedLikedIds = [...(post.likedIds || [])];
 
+    if (req.method === "POST") {
+      updatedLikedIds.push(currentUser.id);
+
+      try {
         const post = await prisma.post.findUnique({
-            where: {
-                id: postId
-            }
+          where: {
+            id: postId,
+          },
         });
 
-        if (!post) {
-            throw new Error("Post not found")
-        }
+        if (post?.userId) {
+          await prisma.notification.create({
+            data: {
+              body: "liked your tweet!",
+              userId: post.userId,
+              actorId: currentUser.id,
+              type: "like",
+              postId: postId,
+            },
+          });
 
-        let updatedLikedIds = [...(post.likedIds || [])]
-
-        if (req.method === "POST") {
-            updatedLikedIds.push(currentUser.id)
-
-            try {
-                const post = await prisma.post.findUnique({
-                    where: {
-                        id: postId
-                    }
-                })
-
-                if (post?.userId) {
-                    await prisma.notification.create({
-                        data: {
-                            body: "Someone liked your post!",
-                            userId: post.userId,
-                        }
-                    });
-
-                    await prisma.user.update({
-                        where: {
-                            id: post.userId
-                        },
-                        data: {
-                            hasNotification: true
-                        }
-                    })
-                }
-             }
-
-            catch (error) {
-                console.log(error);
-            }
-        }
-
-        if (req.method === "DELETE") {
-            updatedLikedIds = updatedLikedIds.filter((likedId) => likedId !== currentUser.id)
-        }
-
-        const updatedPost = await prisma.post.update({
+          await prisma.user.update({
             where: {
-                id: postId
+              id: post.userId,
             },
             data: {
-                likedIds: updatedLikedIds
-            }
-        });
-
-        return res.status(200).json(updatedPost);
-
+              hasNotification: true,
+            },
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
-    catch (error) {
-        console.log(error);
-        return res.status(400).end()
+
+    if (req.method === "DELETE") {
+      updatedLikedIds = updatedLikedIds.filter(
+        (likedId) => likedId !== currentUser.id
+      );
     }
+
+    const updatedPost = await prisma.post.update({
+      where: {
+        id: postId,
+      },
+      data: {
+        likedIds: updatedLikedIds,
+      },
+    });
+
+    return res.status(200).json(updatedPost);
+  } catch (err) {
+    return res.status(400).end();
+  }
 }

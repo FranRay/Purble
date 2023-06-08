@@ -1,9 +1,8 @@
 import useSWR from "swr";
-
 import fetcher from "@/libs/fetcher";
 
-const usePosts = (userId?: string) => {
-  const url = userId ? `/api/posts?userId=${userId}` : "/api/posts";
+const useMessages = (userId: string) => {
+  const url = userId ? `/api/messages/${userId}` : null;
   const { data, error, isLoading, mutate } = useSWR(url, fetcher);
 
   return {
@@ -14,4 +13,4 @@ const usePosts = (userId?: string) => {
   };
 };
 
-export default usePosts;
+export default useMessages;
