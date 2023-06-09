@@ -144,12 +144,19 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
             )}
             {/* Buttons for image upload and submit */}
             <div className="mt-4 flex flex-row content-center items-center pb-2">
-              <label htmlFor="image-upload">
+              {isComment ? (
+                <label htmlFor="image-upload">
+                  <BsImageFill
+                    className="hidden cursor-pointer text-[#A4B6E1] hover:text-[#7680E5]"
+                  />
+                </label>
+              ) : (
                 <BsImageFill
-                  size={20}
-                  className="cursor-pointer text-[#A4B6E1] hover:text-[#7680E5]"
+                    size={20}
+                    className="cursor-pointer text-[#A4B6E1] hover:text-[#7680E5]"
                 />
-              </label>
+              )}
+
               <input
                 id="image-upload"
                 type="file"
@@ -157,6 +164,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
                 className="hidden"
                 onChange={handleFileChange}
               />
+              
               <div className="w-full flex justify-end">
                 <Button disabled={isLoading || !body} onClick={onSubmit} label="Post" />
               </div>

@@ -13,7 +13,7 @@ import { toast } from "react-hot-toast";
 interface PostItemProps {
   data: Record<string, any>;
   userId?: string;
-  onDelete: () => void; // Add onDelete prop
+  onDelete?: () => void; // Add onDelete prop
 }
 
 const PostItem: React.FC<PostItemProps> = ({ data, userId, onDelete }) => {
