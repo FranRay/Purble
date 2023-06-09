@@ -7,6 +7,8 @@ import useRegisterModal from "@/hooks/useRegisterModal";
 import Input from "../Input";
 import Modal from "../Modal";
 
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
 const LoginModal = () => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
@@ -14,6 +16,11 @@ const LoginModal = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isVisible, setVisible] = useState(false);
+
+  const toggle = () => {
+    setVisible(!isVisible);
+  };
 
   const onToggle = useCallback(() => {
     if (isLoading) {
@@ -49,13 +56,21 @@ const LoginModal = () => {
         value={email}
         disabled={isLoading}
       />
+      <div className="relative">
       <Input
         placeholder="Password"
-        type="password"
+        type={!isVisible ? "password" : "text"}
         onChange={(e) => setPassword(e.target.value)}
         value={password}
         disabled={isLoading}
       />
+      <span className="absolute right-4 bottom-6 icon text-white cursor-pointer"
+          onClick={toggle}
+          // style={{ position: "absolute", right: 20, top: 14 }}
+        >
+          {isVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
+        </span>
+      </div>
     </div>
   );
 

@@ -6,6 +6,8 @@ import { signIn } from "next-auth/react";
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+
 import Input from "../Input";
 import Modal from "../Modal";
 
@@ -18,6 +20,13 @@ const RegisterModal = () => {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isVisible, setVisible] = useState(false);
+
+
+  const toggle = () => {
+    setVisible(!isVisible);
+  };
+
 
   const onToggle = useCallback(() => {
     if (isLoading) {
@@ -75,13 +84,21 @@ const RegisterModal = () => {
         value={username}
         disabled={isLoading}
       />
+      <div className="relative">
       <Input
         placeholder="Password"
-        type="password"
+        type={!isVisible ? "password" : "text"}
         onChange={(e) => setPassword(e.target.value)}
         value={password}
         disabled={isLoading}
       />
+      <span className="absolute right-4 bottom-6 icon text-white cursor-pointer"
+          onClick={toggle}
+          // style={{ position: "absolute", right: 20, top: 14 }}
+        >
+          {isVisible ? <AiFillEye /> : <AiFillEyeInvisible />}
+        </span>
+      </div>
     </div>
   );
 

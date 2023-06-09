@@ -17,6 +17,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 }) => {
   const [base64, setBase64] = useState(value);
 
+  // This is the function that is called when the user uploads an image
   const handleChange = useCallback(
     (base64: string) => {
       onChange(base64);

@@ -35,11 +35,11 @@ const EditModal = () => {
     currentUser?.bio,
   ]);
 
-  const [isLoading, setIsLoaiding] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = useCallback(async () => {
     try {
-      setIsLoaiding(true);
+      setIsLoading(true);
 
       await axios.patch("/api/edit", {
         name,
@@ -56,7 +56,7 @@ const EditModal = () => {
     } catch (err) {
       toast.error("Something went wrong");
     } finally {
-      setIsLoaiding(false);
+      setIsLoading(false);
     }
   }, [
     bio,
