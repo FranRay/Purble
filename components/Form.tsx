@@ -1,4 +1,5 @@
 import axios from "axios";
+import Image from "next/image";
 import { useCallback, useState } from "react";
 import { BsImageFill } from "react-icons/bs";
 import { toast } from "react-hot-toast";
@@ -99,7 +100,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
   // If the user is not logged in, show the login/register buttons
   return (
-    <div className="bg-white rounded-xl px-5 py-2">
+    <div className="bg-white rounded-xl px-5 py-2 mt-5">
       {currentUser ? (
         <div className="flex flex-row gap-4 mt-4">
           <div>
@@ -137,7 +138,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
             {/* Display the image preview */}
             {file && (
               <div className="flex items-center mt-2">
-                <img src={URL.createObjectURL(file)} alt="Preview" className="h-20 w-20 object-cover" />
+                <Image src={URL.createObjectURL(file)} alt="Preview" className="h-20 w-20 object-cover" />
                 <span className="text-[#475885] ml-2">{filename}</span>
               </div>
             )}
@@ -164,18 +165,25 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
         </div>
       ) : (
         <div className="py-8">
-          <h1
+          {/* <h1
             className="
-        text-[#475885]
-        text-2xl
-        text-center
-        mb-4
-        font-bold
-        "
+            text-[#475885]
+            text-2xl
+            text-center
+            mb-4
+            font-bold
+            "
           >
-            TAMBAYAN!
-          </h1>
-          <div className="flex flex-row items-center justify-center gap-4">
+            PURBLE
+          </h1> */}
+          <Image 
+            width={900}
+            height={900}
+            alt="Splash" 
+            src={"/images/splash.png"}
+            className="mb-5 rounded-xl"
+          />
+          <div className="flex flex-row items-center justify-end gap-4">
             <Button label="Login" onClick={loginModal.onOpen} />
             <Button label="Register" onClick={registerModal.onOpen} secondary />
           </div>

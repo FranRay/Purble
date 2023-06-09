@@ -68,12 +68,10 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
       className={`
         bg-white
         rounded-xl 
-        m-2
         w-full
         flex
         flex-col
         justify-between
-        
         `}
     >
       <h2 className="text-white text-xl border-b-[1px] border-[#D2DBF2] p-2 md:p-4 bg-[#7680E5] rounded-t-xl">

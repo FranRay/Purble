@@ -50,9 +50,6 @@ const Conversations: React.FC<ConversationsProps> = ({
   if (conversations.length === 0) {
     return (<div
       className={`
-      pt-2
-      pb-2
-      pl-2 
       transform 
       transition-all 
       duration-300 
@@ -61,10 +58,10 @@ const Conversations: React.FC<ConversationsProps> = ({
       overflow-y-auto
       overflow-x-hidden
       w-full
-      
+      mr-5
       `}
     >
-      <div className="bg-white h-[70vh] rounded-md">
+      <div className="bg-white h-full rounded-md">
         <div className="border-b-[1px] border-white">
           <h2 className="text-[#475885] text-xl font-semibold p-7">Chats</h2>
         </div>
@@ -85,9 +82,6 @@ const Conversations: React.FC<ConversationsProps> = ({
   return (
     <div
       className={`
-      pt-2
-      pb-2
-      pl-2 
       transform 
       transition-all 
       duration-300 
@@ -95,11 +89,13 @@ const Conversations: React.FC<ConversationsProps> = ({
       scrollbar
       overflow-y-auto
       overflow-x-hidden
+      w-full
+      mr-5
       
       ${show ? "translate-x-0" : "-translate-x-full hidden relative z-2"}
       `}
     >
-      <div className="bg-white h-[70vh] rounded-xl">
+      <div className="bg-white h-full rounded-xl">
         <div className="border-b-[1px] border-white">
           <h2 className="text-[#475885] text-xl font-semibold p-7">Chats</h2>
         </div>

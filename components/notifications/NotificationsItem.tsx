@@ -56,7 +56,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
             hover:bg-[#D2DBF2]
             cursor-pointer
             rounded-xl
-            mt-5
+            mb-5
           "
       >
         <Gi3DMeeple color="#7680E5" size={32} />

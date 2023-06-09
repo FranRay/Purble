@@ -73,7 +73,6 @@ const Messages = () => {
               className="
             bg-white
             rounded-xl
-            m-2
             p-4
             flex
             flex-col

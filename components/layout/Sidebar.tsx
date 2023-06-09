@@ -54,10 +54,19 @@ const Sidebar = () => {
           md:w-auto 
           px-10 
           md:pb-10
-          m-5
-          md:px-3 
+          m-10
+          md:m-5
+          md:px-1
+          lg:px-3 
           z-10
-          rounded-2xl"
+          rounded-2xl
+          shadow-xl
+          p-2
+          border-2
+          border-[#7680E5]
+          md:border-none
+          md:shadow-none
+          "
     >
       {/* <div className="flex flex-col items-end"> */}
       <div
@@ -74,9 +83,9 @@ const Sidebar = () => {
                 px-5
                 "
       >
-        <div className="hidden md:flex font-bold items-center content-center text-[#7680E5] text-lg pt-4">
+        <div className="hidden md:flex font-bold items-center content-center text-[#7680E5] text-xl pt-4">
           <SidebarLogo /> 
-          <p>TAMBAYAN!</p>
+          <p className="hidden lg:flex">PURBLE</p>
         </div>
         {items.map((item) => (
           <SidebarItem
