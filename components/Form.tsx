@@ -68,9 +68,15 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
           throw new Error("Image upload failed");
         }
       }
-
+      console.log(imagePreviewUrl);
       // Create post/comment with body and image URL
-      await axios.post(url, { body, imageUrl: imagePreviewUrl });
+      await axios.post(url, { body, imageUrl: imagePreviewUrl })
+      .then((res) => 
+        {
+        console.log(res)
+        }
+      );
+
       
 
       toast.success("Tweet Created");

@@ -69,6 +69,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
             <span className="text-neutral-500 text-sm">{createdAt}</span>
           </div>
           <div className="text-white mt-1">{data.body}</div>
+          {data.imageUrl && (
+              <img src={data.imageUrl} alt="Uploaded" className="mt-3 rounded-lg max-h-64 content-center" />
+          )}
         </div>
       </div>
     </div>
