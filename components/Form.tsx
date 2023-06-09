@@ -138,7 +138,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
             {/* Display the image preview */}
             {file && (
               <div className="flex items-center mt-2">
-                <Image src={URL.createObjectURL(file)} alt="Preview" className="h-20 w-20 object-cover" />
+                <img src={URL.createObjectURL(file)} alt="Preview" className="h-20 w-20 object-cover" />
                 <span className="text-[#475885] ml-2">{filename}</span>
               </div>
             )}

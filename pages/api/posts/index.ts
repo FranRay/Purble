@@ -3,20 +3,15 @@ import serverAuth from "@/libs/serverAuth";
 import prisma from "@/libs/prismadb";
 import Image from "next/image";
 
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "POST" && req.method !== "GET") {
-    return res.status(405).end();
-  }
-
-  try {
-    if (req.method === "POST") {
+  if (req.method === "POST") {
+    // Create a new post
+    try {
       const { currentUser } = await serverAuth(req);
       const { body, imageUrl } = req.body;
-      console.log("imageUrl", imageUrl)
 
       const post = await prisma.post.create({
         data: {
@@ -27,9 +22,13 @@ export default async function handler(
       });
 
       return res.status(200).json(post);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).end();
     }
-
-    if (req.method === "GET") {
+  } else if (req.method === "GET") {
+    // Retrieve posts
+    try {
       const { userId } = req.query;
 
       let posts;
@@ -60,9 +59,54 @@ export default async function handler(
       }
 
       return res.status(200).json(posts);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).end();
     }
-  } catch (err) {
-    console.log(err);
-    return res.status(400).end();
+  } else if (req.method === "DELETE") {
+    // Delete a post
+    try {
+      const { currentUser } = await serverAuth(req);
+      const { postId } = req.body;
+
+      const post = await prisma.post.findUnique({
+        where: {
+          id: postId,
+        },
+        include: {
+          comments: true,
+        },
+      });
+
+      if (!post) {
+        return res.status(404).end();
+      }
+
+      // Check if the current user is the owner of the post
+      if (post.userId !== currentUser.id) {
+        return res.status(403).end();
+      }
+
+      // Delete the post and its associated comments in a transaction
+      await prisma.$transaction([
+        prisma.comment.deleteMany({
+          where: {
+            postId,
+          },
+        }),
+        prisma.post.delete({
+          where: {
+            id: postId,
+          },
+        }),
+      ]);
+
+      return res.status(200).end();
+    } catch (err) {
+      console.log(err);
+      return res.status(400).end();
+    }
+  } else {
+    return res.status(405).end();
   }
 }
