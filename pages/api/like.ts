@@ -45,7 +45,7 @@ export default async function handler(
         if (post?.userId) {
           await prisma.notification.create({
             data: {
-              body: "liked your tweet!",
+              body: "liked your post!",
               userId: post.userId,
               actorId: currentUser.id,
               type: "like",

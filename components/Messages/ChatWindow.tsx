@@ -66,8 +66,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   return (
     <div
       className={`
-        bg-neutral-900 
-        rounded-md 
+        bg-white
+        rounded-xl 
         m-2
         w-full
         flex
@@ -76,7 +76,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
         
         `}
     >
-      <h2 className="text-white text-xl border-b-[1px] border-neutral-800 p-2 md:p-4">
+      <h2 className="text-white text-xl border-b-[1px] border-[#D2DBF2] p-2 md:p-4 bg-[#7680E5] rounded-t-xl">
         {!isLoadingUser && user ? (
           <>
             <div className="flex flex-row gap-2 justify-between items-center">
@@ -104,7 +104,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
           "Chat Window"
         )}
       </h2>
-      <div className="px-4 py-[1px] flex-grow overflow-y-auto border-b-[1px] border-neutral-800 scrollbar">
+      <div className="px-4 py-[1px] flex-grow overflow-y-auto border-b-[1px] border-[#D2DBF2] scrollbar">
         {messages
           .filter(
             (message: Record<string, any>) => message.content.trim() !== ""
@@ -126,15 +126,16 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                   }`}
                 >
                   <div
-                    className={`px-3 py-2 rounded-full ${
+                    className={`px-3 py-2 rounded-full font-medium ${
                       isOwnMessage
-                        ? "bg-neutral-700 text-white"
-                        : "bg-neutral-800 text-white"
+                        ? "bg-[#7680E5] text-[#D2DBF2]"
+                        : "bg-[#D2DBF2] text-[#475885]"
                     }`}
                   >
                     <p className="text-sm">{message.content}</p>
                   </div>
-                  {/* <p className="text-xs text-neutral-500"></p> */}
+                  {/* <p className="text-xs text-[#475885]
+"></p> */}
                 </div>
               </div>
             );
@@ -144,9 +145,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
       <div
         className="
               flex 
-              flex-row 
-
-              
+              flex-row
               "
       >
         <textarea
@@ -158,17 +157,20 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
           }
           className="
             mx-3 md:mx-6
-            my-1 md:my-3
+            my-5 md:my-3
+            px-5
             peer
             resize-none
             w-full
-            bg-neutral-900
+            bg-[#EEF5FF]
+            rounded-full
             ring-0
             outline-none
-            text-[20px]
-            placeholder-neutral-500
-            text-white
+            text-[15px]
+            placeholder-[#475885]
+            text-[#475885]
             scrollbar
+            text-left
           "
           placeholder="Type your message..."
         ></textarea>
@@ -179,8 +181,6 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
         flex-row 
         justify-center 
         items-center
-        border-l-[1px]
-        border-neutral-800
         "
         >
           <Button

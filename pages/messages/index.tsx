@@ -71,8 +71,8 @@ const Messages = () => {
           ) : (
             <div
               className="
-            bg-neutral-900
-            rounded-md
+            bg-white
+            rounded-xl
             m-2
             p-4
             flex
@@ -82,7 +82,7 @@ const Messages = () => {
             items-center
             "
             >
-              <h2 className="text-neutral-600 text-xl font-semibold">
+              <h2 className="text-[#475885] text-xl font-semibold">
                 Start a conversation!
               </h2>
             </div>

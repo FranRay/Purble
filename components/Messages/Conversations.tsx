@@ -64,15 +64,16 @@ const Conversations: React.FC<ConversationsProps> = ({
       
       `}
     >
-      <div className="bg-neutral-900 h-[70vh] rounded-md">
-        <div className="border-b-[1px] border-neutral-800">
-          <h2 className="text-white text-xl font-semibold p-7">Chats</h2>
+      <div className="bg-white h-[70vh] rounded-md">
+        <div className="border-b-[1px] border-white">
+          <h2 className="text-[#475885] text-xl font-semibold p-7">Chats</h2>
         </div>
         <div className="flex flex-col">
-          <p className="text-neutral-500 p-4 text-xs">
+          <p className="text-[#475885]
+ p-4 text-xs">
             No conversations yet.
             <br></br><br></br>
-            <hr className="border-neutral-700"></hr>
+            <hr className="border-[#D2DBF2]"></hr>
             <br></br>
             Click on someone’s profile and send them a message!
           </p>
@@ -98,9 +99,9 @@ const Conversations: React.FC<ConversationsProps> = ({
       ${show ? "translate-x-0" : "-translate-x-full hidden relative z-2"}
       `}
     >
-      <div className="bg-neutral-900 h-[70vh] rounded-md">
-        <div className="border-b-[1px] border-neutral-800">
-          <h2 className="text-white text-xl font-semibold p-7">Chats</h2>
+      <div className="bg-white h-[70vh] rounded-xl">
+        <div className="border-b-[1px] border-white">
+          <h2 className="text-[#475885] text-xl font-semibold p-7">Chats</h2>
         </div>
         <div className="flex flex-col">
           {conversations.map((user: Record<string, any>, index: number) => {
@@ -117,9 +118,10 @@ const Conversations: React.FC<ConversationsProps> = ({
                 cursor-pointer 
                 p-3 md:p-6 
                 border-b-[1px] 
-                border-neutral-800 
+                border-white 
+                bg-white
                 h-[20%] 
-                ${isActive ? "bg-neutral-700" : "hover:bg-neutral-800"}`}
+                ${isActive ? "bg-[#F6FAFF]" : "hover:bg-[#D2DBF2]"}`}
                 onClick={() => handleUserSelect(user.id)}
                 style={{
                   borderTopLeftRadius: 0,
@@ -133,7 +135,7 @@ const Conversations: React.FC<ConversationsProps> = ({
                 <div>
                   <Avatar userId={user.id} useDefaultClick={false} />
                 </div>
-                <div className="text-white">
+                <div className="text-[#475885]">
                   <p className="font-semibold text-sm">{user.name}</p>
                   <p className="text-neutral-400 text-sm hidden md:block">
                     @{user.username}

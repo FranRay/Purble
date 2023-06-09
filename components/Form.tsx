@@ -30,10 +30,11 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
   const [body, setBody] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  
   const [file, setFile] = useState<File | null>(null);
   const [filename, setFilename] = useState("");
-  // const [imagePreviewUrl, setImagePreviewUrl] = useState<string | undefined>(undefined);
 
+  // Image select
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setFile(event.target.files[0]);
@@ -80,7 +81,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
       
 
-      toast.success("Tweet Created");
+      toast.success("Post Created");
 
       // Reset the form and update the posts
       setBody("");
@@ -98,7 +99,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
 
   // If the user is not logged in, show the login/register buttons
   return (
-    <div className="border-b-[1px] border-neutral-800 px-5 py-2">
+    <div className="bg-white rounded-xl px-5 py-2">
       {currentUser ? (
         <div className="flex flex-row gap-4 mt-4">
           <div>
@@ -115,12 +116,13 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
                 resize-none
                 mt-3
                 w-full
-                bg-black
+                bg-white
                 ring-0
                 outline-none
-                text-[20px]
-                placeholder-neutral-500
-                text-white
+                text-[18px]
+                placeholder-[#475885]
+
+                text-[#475885]
               "
               placeholder={placeholder}
             ></textarea>
@@ -128,7 +130,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
               className="
                 opacity-100
                 h-[1px]
-                border-neutral-800
+                border-[#D2DBF2]
                 transition
                 "
             />
@@ -136,7 +138,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
             {file && (
               <div className="flex items-center mt-2">
                 <img src={URL.createObjectURL(file)} alt="Preview" className="h-20 w-20 object-cover" />
-                <span className="text-white ml-2">{filename}</span>
+                <span className="text-[#475885] ml-2">{filename}</span>
               </div>
             )}
             {/* Buttons for image upload and submit */}
@@ -144,7 +146,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
               <label htmlFor="image-upload">
                 <BsImageFill
                   size={20}
-                  className="cursor-pointer text-neutral-500 hover:text-sky-500"
+                  className="cursor-pointer text-[#A4B6E1] hover:text-[#7680E5]"
                 />
               </label>
               <input
@@ -155,7 +157,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
                 onChange={handleFileChange}
               />
               <div className="w-full flex justify-end">
-                <Button disabled={isLoading || !body} onClick={onSubmit} label="Tweet" />
+                <Button disabled={isLoading || !body} onClick={onSubmit} label="Post" />
               </div>
             </div>
           </div>
@@ -164,14 +166,14 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
         <div className="py-8">
           <h1
             className="
-        text-white
+        text-[#475885]
         text-2xl
         text-center
         mb-4
         font-bold
         "
           >
-            Welcome to Fritter
+            TAMBAYAN!
           </h1>
           <div className="flex flex-row items-center justify-center gap-4">
             <Button label="Login" onClick={loginModal.onOpen} />

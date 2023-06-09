@@ -68,7 +68,7 @@ model Notification {
   body String
   userId String @db.ObjectId
   actorId String? @db.ObjectId
-  type String
+  type String @default("") 
   postId String? @db.ObjectId
   createdAt DateTime @default(now())
 

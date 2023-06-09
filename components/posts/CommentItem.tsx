@@ -31,10 +31,10 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
     <div
       className="
         border-b-[1px]
-        border-neutral-800
+        border-white
         p-5
         cursor-pointer
-        hover:bg-neutral-900
+        hover:bg-[#D2DBF2]
         transition
     "
     >
@@ -47,7 +47,7 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
             <p
               onClick={goToUser}
               className="
-                text-white
+                text-[#475885]
                 font-semibold
                 cursor-pointer
                 hover:underline
@@ -57,7 +57,8 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
             </p>
             <span
               className="
-                text-neutral-500
+                text-[#475885]
+
                 cursor-pointer
                 hover:underline
                 hidden
@@ -66,9 +67,10 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
             >
               @{data.user.username}
             </span>
-            <span className="text-neutral-500 text-sm">{createdAt}</span>
+            <span className="text-[#475885]
+ text-sm">{createdAt}</span>
           </div>
-          <div className="text-white mt-1">{data.body}</div>
+          <div className="text-[#475885] mt-1">{data.body}</div>
         </div>
       </div>
     </div>

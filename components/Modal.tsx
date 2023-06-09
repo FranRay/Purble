@@ -57,8 +57,8 @@ const Modal: React.FC<ModalProps> = ({
         z-50
         outline-none
         focus:outline-none
-        bg-neutral-800
-        bg-opacity-70 
+        bg-[#A4B6E1]
+        bg-opacity-80 
         "
       >
         <div
@@ -85,7 +85,7 @@ const Modal: React.FC<ModalProps> = ({
                 flex
                 flex-col
                 w-full
-                bg-black
+                bg-white
                 outline-none
                 focus:outline-none
                 "
@@ -100,14 +100,14 @@ const Modal: React.FC<ModalProps> = ({
                 rounded-t
                 "
             >
-              <h3 className="text-3xl font-semibold text-white">{title}</h3>
+              <h3 className="text-3xl font-semibold text-[#475885]">{title}</h3>
               <button
                 onClick={handleClose}
                 className="
                     p-1
                     ml-auto
                     border-0
-                    text-white
+                    text-[#475885]
                     hover:opacity-70
                     transition
                     "

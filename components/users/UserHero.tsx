@@ -12,13 +12,14 @@ const UserHero: React.FC<UserHeroProps> = ({ userId }) => {
   const { data: fetchedUser } = useUser(userId);
   return (
     <div>
-      <div className="bg-neutral-700 h-44 relative">
+      <div className="bg-[#D2DBF2] h-44 relative rounded-t-xl">
         {fetchedUser?.coverImage && (
           <Image
             src={fetchedUser.coverImage}
             fill
             alt="Cover Image"
             style={{ objectFit: "cover" }}
+            className="rounded-t-xl"
           />
         )}
         <div className="absolute -bottom-16 left-4">

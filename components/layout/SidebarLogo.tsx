@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { BsTwitter } from "react-icons/bs";
+import { Gi3DMeeple } from "react-icons/gi";
 
 const SidebarLogo = () => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const SidebarLogo = () => {
         transition
         "
     >
-      <BsTwitter size={28} color="white" />
+      <Gi3DMeeple size={28} color="#7680E5" />
     </div>
   );
 };

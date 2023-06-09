@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  @apply h-full bg-black;
+  @apply h-full bg-[#EEF5FF];
 }
 
 body {
-  @apply h-full bg-black;
+  @apply h-full bg-[#EEF5FF];
 }
 
 /* Define the custom scrollbar style */

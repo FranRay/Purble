@@ -61,11 +61,12 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
     <div
       onClick={goToPost}
       className="
-        border-b-[1px]
-        border-neutral-800
         p-5
+        rounded-xl
+        bg-white
+        my-5
         cursor-pointer
-        hover:bg-neutral-900
+        hover:bg-[#D2DBF2]
         transition
         "
     >
@@ -85,7 +86,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
             <p
               onClick={goToUser}
               className="
-                text-white
+                text-[#475885]
                 font-semibold
                 cursor-pointer
                 hover:underline
@@ -96,7 +97,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
             <span
               onClick={goToUser}
               className="
-                text-neutral-500
+                text-[#475885]
+
                 cursor-pointer
                 hover:underline
                 hidden
@@ -105,9 +107,10 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
             >
               @{data.user.username}
             </span>
-            <span className="text-neutral-500 text-sm">{createdAt}</span>
+            <span className="text-[#475885]
+ text-sm">{createdAt}</span>
           </div>
-          <div className="text-white mt-1">{data.body}</div>
+          <div className="text-[#475885] mt-1">{data.body}</div>
             {data.imageUrl && (
               <img src={data.imageUrl} alt="Uploaded" className="mt-3 rounded-lg max-h-64 content-center" />
             )}
@@ -117,11 +120,12 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                 flex
                 flex-row
                 items-center
-                text-neutral-500
+                text-[#475885]
+
                 gap-2
                 cursor-pointer
                 transition
-                hover:text-sky-500
+                hover:text-[#7680E5]
                 "
             >
               <AiOutlineMessage size={20} />
@@ -133,7 +137,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
                 flex
                 flex-row
                 items-center
-                text-neutral-500
+                text-[#475885]
+
                 gap-2
                 cursor-pointer
                 transition

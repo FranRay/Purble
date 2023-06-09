@@ -39,15 +39,15 @@ const Button: React.FC<ButtonProps> = ({
         ${transform ? "" : "transition-transform duration-300 ease-in-out"}
         ${notRounded ? "rounded-md" : "rounded-full"}
         ${fullWidth ? "w-full" : "w-fit"}
-        ${secondary ? "bg-white" : "bg-sky-500"}
-        ${secondary ? "text-black" : "text-white"}
-        ${secondary ? "border-black" : "border-sky-500"}
+        ${secondary ? "bg-[#7680E5]" : "bg-[#7680E5]"}
+        ${secondary ? "text-[#EEF5FF]" : "text-[#EEF5FF]"}
+        ${secondary ? "border-[#EEF5FF]" : "border-[#7680E5]"}
         ${large ? "text-xl" : "text-md"}
         ${large ? "px-5" : "px-4"}
         ${large ? "py-3" : "py-2"}
         ${outline ? "bg-transparent" : ""}
-        ${outline ? "border-white" : ""}
-        ${outline ? "text-white" : ""}
+        ${outline ? "border-[#475885]" : ""}
+        ${outline ? "text-[#475885]" : ""}
       `}
     >
       {label}

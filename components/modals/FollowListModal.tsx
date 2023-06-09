@@ -36,7 +36,7 @@ const FollowListModal: React.FC<FollowListModalProps> = ({
 
   const bodyContent = (
     <div>
-      <div className=" border-[1px] border-neutral-900">
+      <div className=" border-[1px] border-[#D2DBF2]">
         <div className="flex flex-col  ">
           {users.map((user: Record<string, any>) => (
             <div
@@ -48,8 +48,8 @@ const FollowListModal: React.FC<FollowListModalProps> = ({
               gap-4 
               p-3 
               border-b-[1px]
-              border-neutral-900
-              hover:bg-neutral-900
+              border-[#D2DBF2]
+              hover:bg-[#D2DBF2]
               cursor-pointer
               "
             >
@@ -59,7 +59,7 @@ const FollowListModal: React.FC<FollowListModalProps> = ({
               <div className="flex flex-col">
                 <p
                   className="
-               text-white 
+               text-[#475885] 
                 font-semibold 
                 text-sm"
                 >

@@ -7,8 +7,8 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="h-screen bg-black relative z-1">
-      <div className="container h-full mx-auto xl:px-30 lg:max-w-6xl">
+    <div className="h-screen bg-[#EEF5FF] relative z-1">
+      <div className="container h-full mx-auto xl:px-30 lg:max-w-8xl">
         <div
           className="
                 flex 
@@ -26,8 +26,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             className="
             w-full
             min-h-screen
-            border-x-[1px]
-            border-neutral-800
             "
           >
             {children}

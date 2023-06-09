@@ -47,15 +47,17 @@ const Sidebar = () => {
           md:relative
           bottom-0
           inset-x-0
-          bg-black 
+          bg-white 
           order-last 
           md:order-first 
           h-fit
-          md:h-full 
           md:w-auto 
-          px-4 
+          px-10 
+          md:pb-10
+          m-5
           md:px-3 
-          z-10"
+          z-10
+          rounded-2xl"
     >
       {/* <div className="flex flex-col items-end"> */}
       <div
@@ -69,10 +71,12 @@ const Sidebar = () => {
                 md:space-y-2 
                 w-full 
                 md:w-fit
+                px-5
                 "
       >
-        <div className="hidden md:flex">
-          <SidebarLogo />
+        <div className="hidden md:flex font-bold items-center content-center text-[#7680E5] text-lg pt-4">
+          <SidebarLogo /> 
+          <p>TAMBAYAN!</p>
         </div>
         {items.map((item) => (
           <SidebarItem

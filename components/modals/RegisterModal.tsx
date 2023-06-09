@@ -92,7 +92,7 @@ const RegisterModal = () => {
         value={password}
         disabled={isLoading}
       />
-      <span className="absolute right-4 bottom-6 icon text-white cursor-pointer"
+      <span className="absolute right-4 bottom-6 icon text-[#475885] cursor-pointer"
           onClick={toggle}
           // style={{ position: "absolute", right: 20, top: 14 }}
         >
@@ -109,7 +109,7 @@ const RegisterModal = () => {
         <span
           onClick={onToggle}
           className="
-            text-white
+            text-[#475885]
             cursor-pointer
             hover:underline
           "

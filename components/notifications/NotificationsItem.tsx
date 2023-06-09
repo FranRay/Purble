@@ -1,7 +1,7 @@
 import { formatDistanceToNowStrict } from "date-fns";
 import Link from "next/link";
 import { useMemo } from "react";
-import { BsTwitter } from "react-icons/bs";
+import { Gi3DMeeple } from "react-icons/gi";
 
 export interface Notification {
   id: string;
@@ -52,18 +52,19 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
             items-center
             p-6
             gap-4
-            border-b-[1px]
-            border-neutral-800
-            hover:bg-neutral-900
+            bg-white
+            hover:bg-[#D2DBF2]
             cursor-pointer
+            rounded-xl
+            mt-5
           "
       >
-        <BsTwitter color="white" size={32} />
-        <div className="text-white">
+        <Gi3DMeeple color="#7680E5" size={32} />
+        <div className="text-[#475885]">
           <span className="font-bold">{notification.actor.name}</span>
           <span> @{notification.actor.username}</span>{" "}
           <span>{notification.body}</span>{" "}
-          <span className="text-neutral-500">{createdAt} ago</span>
+          <span className="text-[#A4B6E1]">{createdAt} ago</span>
         </div>
       </div>
     </Link>

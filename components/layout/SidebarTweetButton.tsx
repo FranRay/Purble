@@ -32,13 +32,13 @@ const SidebarTweetIcon = () => {
             flex
             items-center
             justify-center
-            bg-sky-500
+            bg-[#7680E5]
             hover:bg-opacity-80
             transition
             cursor-pointer
             "
       >
-        <FaFeather size={24} color="white" />
+        <FaFeather size={20} color="#EEF5FF" />
       </div>
       <div
         className="
@@ -48,7 +48,7 @@ const SidebarTweetIcon = () => {
             px-4
             py-2
             rounded-full
-            bg-sky-500
+            bg-[#7680E5]
             hover:bg-opacity-90
             cursor-pointer
             transition
@@ -64,7 +64,7 @@ const SidebarTweetIcon = () => {
             text-[20px]
             "
         >
-          Tweet
+          Post
         </p>
       </div>
     </div>
