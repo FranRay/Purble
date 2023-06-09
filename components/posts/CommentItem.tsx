@@ -30,8 +30,9 @@ const CommentItem: React.FC<CommentItemProps> = ({ data }) => {
   return (
     <div
       className="
-        border-b-[1px]
-        border-white
+        bg-white
+        rounded-xl
+        mt-5
         p-5
         cursor-pointer
         hover:bg-[#D2DBF2]
