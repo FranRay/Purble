@@ -49,6 +49,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId, onDelete }) => {
     [loginModal, currentUser, toggleLike]
   );
 
+  // Add the delete logic
   const handleDelete = useCallback(async () => {
     if (!currentUser) {
       return loginModal.onOpen();
@@ -73,6 +74,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId, onDelete }) => {
       console.log("Delete error:", error);
     }
   }, [currentUser, data.id, loginModal, onDelete]);
+
   const createdAt = useMemo(() => {
     if (!data?.createdAt) {
       return null;
@@ -178,7 +180,8 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId, onDelete }) => {
               <p>{data.likedIds.length}</p>
             </div>
             {/* delete */}
-            <div
+            {currentUser?.id === data.user.id && (
+              <div
               onClick={handleDelete}
               className={`
                 flex
@@ -194,6 +197,7 @@ const PostItem: React.FC<PostItemProps> = ({ data, userId, onDelete }) => {
             >
               <AiOutlineDelete size={20}/>
             </div>
+            )}
           </div>
         </div>
       </div>

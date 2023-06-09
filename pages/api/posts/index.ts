@@ -63,6 +63,44 @@ export default async function handler(
       console.log(err);
       return res.status(400).end();
     }
+  } else if (req.method === "PUT") {
+    // Update a post
+    try {
+      const { currentUser } = await serverAuth(req);
+      const { postId, body, imageUrl } = req.body;
+
+      const post = await prisma.post.findUnique({
+        where: {
+          id: postId,
+        },
+      });
+
+      if (!post) {
+        return res.status(404).end();
+      }
+
+      // Check if the current user is the owner of the post
+      if (post.userId !== currentUser.id) {
+        return res.status(403).end();
+      }
+
+      // Update the post
+      const updatedPost = await prisma.post.update({
+        where: {
+          id: postId,
+        },
+        data: {
+          body,
+          imageUrl,
+        },
+      });
+
+      return res.status(200).json(updatedPost);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).end();
+    }
+    
   } else if (req.method === "DELETE") {
     // Delete a post
     try {
