@@ -16,6 +16,7 @@ interface FormProps {
   placeholder: string;
   isComment?: boolean;
   postId?: string;
+  imageUrl?:string;
 }
 
 // This is the form that is used to create a new post or comment
