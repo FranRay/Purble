@@ -168,7 +168,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
                 </div>
               )}
               <div className="w-full flex justify-end">
-                <Button disabled={isLoading || !body} onClick={onSubmit} label="Post" />
+                <Button disabled={isLoading || !body} secondary onClick={onSubmit} label="Post" />
               </div>
             </div>
           </div>

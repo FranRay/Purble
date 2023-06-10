@@ -87,6 +87,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                     <MdOutlineArrowForwardIos />
                   )
                 }
+                secondary
                 noBorder={true}
                 outline
                 notRounded={true}

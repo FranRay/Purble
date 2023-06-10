@@ -40,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
         ${notRounded ? "rounded-md" : "rounded-full"}
         ${fullWidth ? "w-full" : "w-fit"}
         ${secondary ? "bg-[#7680E5]" : "bg-[#7680E5]"}
-        ${secondary ? "text-[#EEF5FF]" : "text-[#EEF5FF]"}
+        ${secondary ? "text-[#EEF5FF]" : "text-[#7680E5]"}
         ${secondary ? "border-[#EEF5FF]" : "border-[#7680E5]"}
         ${large ? "text-xl" : "text-md"}
         ${large ? "px-5" : "px-4"}
