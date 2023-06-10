@@ -194,8 +194,8 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
             className="mb-5 rounded-xl"
           />
           <div className="flex flex-row items-center justify-end gap-4">
-            <Button label="Login" onClick={loginModal.onOpen} />
-            <Button label="Register" onClick={registerModal.onOpen} secondary />
+            <Button label="Login" onClick={loginModal.onOpen} secondary />
+            <Button label="Register" onClick={registerModal.onOpen} outline />
           </div>
         </div>
       )}
