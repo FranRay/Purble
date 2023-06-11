@@ -16,7 +16,7 @@ export default async function handler(
     // Destructure the userId from the body
     const { userId } = req.body;
     // Get the current user
-    const { currentUser } = await serverAuth(req);
+    const { currentUser } = await serverAuth(req, res);
 
     // Check if the userId is valid
     if (!userId || typeof userId !== "string") {

@@ -14,7 +14,7 @@ export default async function handler(
 
     // Get the content and recipient ID from the request body
     const { content, recipientId } = req.body;
-    const { currentUser } = await serverAuth(req);
+    const { currentUser } = await serverAuth(req, res);
 
     // create a new message
     const newMessage = await prisma.privateMessage.create({
@@ -31,7 +31,7 @@ export default async function handler(
   else if (req.method === "GET") {
     // Get the user ID from the query
     const { userId } = req.query;
-    const { currentUser } = await serverAuth(req);
+    const { currentUser } = await serverAuth(req, res);
     
     const validUserId = userId as string;
 
@@ -53,7 +53,7 @@ export default async function handler(
   // if the request method is PUT, create a new conversation
   else if (req.method === "PUT") {
     const { userId } = req.query;
-    const { currentUser } = await serverAuth(req);
+    const { currentUser } = await serverAuth(req, res);
     const validUserId = userId as string;
 
     // check if a conversation already exists between the current user and the specified user ID

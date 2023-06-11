@@ -14,7 +14,7 @@ export default async function handler(
   }
   
   try {
-    const { currentUser } = await serverAuth(req);
+    const { currentUser } = await serverAuth(req, res);
 
     // Get all conversations involving the current user
     const conversations = await prisma.privateMessage.findMany({

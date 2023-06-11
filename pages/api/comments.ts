@@ -14,7 +14,7 @@ export default async function handler(
 
   try {
     // Get the current user
-    const { currentUser } = await serverAuth(req);
+    const { currentUser } = await serverAuth(req, res);
     // Destructure the body and query
     const { body } = req.body;
     const { postId } = req.query;

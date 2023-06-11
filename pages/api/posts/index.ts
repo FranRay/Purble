@@ -10,7 +10,7 @@ export default async function handler(
     // Create a new post
     try {
       // Get the current user
-      const { currentUser } = await serverAuth(req);
+      const { currentUser } = await serverAuth(req, res);
       const { body, imageUrl } = req.body;
 
       // Check if the body is valid
@@ -72,7 +72,7 @@ export default async function handler(
   } else if (req.method === "PATCH") {
     // Update a post
     try {
-      const { currentUser } = await serverAuth(req);
+      const { currentUser } = await serverAuth(req, res);
       const { postId, editedBody } = req.body;
   
       const post = await prisma.post.findUnique({
@@ -108,7 +108,7 @@ export default async function handler(
   } else if (req.method === "DELETE") {
     // Delete a post
     try {
-      const { currentUser } = await serverAuth(req);
+      const { currentUser } = await serverAuth(req, res);
       const { postId } = req.body;
 
       const post = await prisma.post.findUnique({
