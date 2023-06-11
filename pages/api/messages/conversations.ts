@@ -7,13 +7,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+
+  // only allow GET requests
   if (req.method !== "GET") {
     return res.status(405).end();
   }
-
+  
   try {
     const { currentUser } = await serverAuth(req);
 
+    // Get all conversations involving the current user
     const conversations = await prisma.privateMessage.findMany({
       where: {
         OR: [{ senderId: currentUser.id }, { recipientId: currentUser.id }],

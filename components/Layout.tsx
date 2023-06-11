@@ -5,6 +5,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+// webapp layout
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="h-screen bg-[#EEF5FF] relative z-1">
@@ -21,6 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 lg:px-0
                 "
         >
+          {/* display sidebar, page, and followbar */}
           <Sidebar />
           <div
             className="

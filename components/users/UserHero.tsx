@@ -8,6 +8,7 @@ interface UserHeroProps {
   userId: string;
 }
 
+// user profile hero template
 const UserHero: React.FC<UserHeroProps> = ({ userId }) => {
   const { data: fetchedUser } = useUser(userId);
   return (

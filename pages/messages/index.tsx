@@ -7,9 +7,11 @@ import Header from "@/components/Header";
 import Conversations from "@/components/Messages/Conversations";
 import ChatWindow from "@/components/Messages/ChatWindow";
 
+// This page is only accessible to logged in users
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
-
+  
+  // If the user is not logged in, redirect to the homepage
   if (!session) {
     return {
       redirect: {
@@ -19,6 +21,7 @@ export async function getServerSideProps(context: NextPageContext) {
     };
   }
 
+  // If the user is logged in, return their session as a prop
   return {
     props: {
       session,
@@ -28,12 +31,17 @@ export async function getServerSideProps(context: NextPageContext) {
 
 const Messages = () => {
   const router = useRouter();
+
+  // Get the selected user ID from the query string
   const [selectedUserId, setSelectedUserId] = useState<string | null>(
     (router.query.selectedUser as string | null) || null
   );
-
+  
+  // Show the conversations list by default
   const [showConversations, setShowConversations] = useState<boolean>(true);
-
+  
+  // If a user is selected, show the chat window instead
+  // otherwise, show the conversations list and a message
   return (
     <>
       <Header label="Messages" showBackArrow />

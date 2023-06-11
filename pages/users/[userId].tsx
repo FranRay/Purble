@@ -14,16 +14,16 @@ const UserView = () => {
   const router = useRouter();
   const { userId } = router.query;
 
+  // Fetch the user's data
   const { data: fetchedUser, isLoading } = useUser(userId as string);
 
   const followModal = useFollowListModal();
   const title =
     followModal.listType === "followers" ? "Followers List" : "Following List";
   const users =
-    followModal.listType === "followers"
-      ? fetchedUser?.followers
-      : fetchedUser?.following;
+    followModal.listType === "followers" ? fetchedUser?.followers : fetchedUser?.following;
 
+  // If the user data is loading or hasn't been fetched yet, show a loading spinner
   if (isLoading || !fetchedUser) {
     return (
       <div
@@ -39,6 +39,7 @@ const UserView = () => {
     );
   }
 
+  // If the user data has been fetched, render the user's profile
   return (
     <>
       <Header showBackArrow label={fetchedUser?.name} />

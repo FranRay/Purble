@@ -6,7 +6,9 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/libs/prismadb";
 
 export default NextAuth({
+  // Set up prisma as a database adapter for next-auth
   adapter: PrismaAdapter(prisma),
+
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -19,6 +21,7 @@ export default NextAuth({
           throw new Error("Invalid credentials");
         }
 
+        // Find the user by email
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email,
@@ -29,11 +32,13 @@ export default NextAuth({
           throw new Error("Invalid Credentials");
         }
 
+        // Compare the provided password with the bcrypt hashed password from the database
         const isCorrectPassword = await bcrypt.compare(
           credentials.password,
           user.hashedPassword
         );
-
+        
+        // If the password is incorrect, throw an error
         if (!isCorrectPassword) {
           throw new Error("Invalid credentials");
         }

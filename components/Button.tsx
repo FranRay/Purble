@@ -13,6 +13,7 @@ interface ButtonProps {
   noBorder?: boolean;
 }
 
+// button template
 const Button: React.FC<ButtonProps> = ({
   label,
   secondary,

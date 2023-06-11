@@ -7,15 +7,19 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // Only allow POST requests
   if (req.method !== "POST") {
     return res.status(405).end();
   }
 
   try {
+    // Desctructure body
     const { email, username, name, password } = req.body;
 
+    // Hash password with bcrypt
     const hashedPassword = await bcrypt.hash(password, 12);
 
+    // Create user in database
     const user = await prisma?.user.create({
       data: {
         email,

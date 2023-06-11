@@ -8,12 +8,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // If the request method is POST, create a new message
   if (req.method === "POST") {
     console.log("Request Body:", req.body);
 
+    // Get the content and recipient ID from the request body
     const { content, recipientId } = req.body;
     const { currentUser } = await serverAuth(req);
 
+    // create a new message
     const newMessage = await prisma.privateMessage.create({
       data: {
         content,
@@ -23,12 +26,16 @@ export default async function handler(
     });
 
     res.status(201).json(newMessage);
-  } else if (req.method === "GET") {
+  } 
+  // if the request method is GET, retrieve the conversation
+  else if (req.method === "GET") {
+    // Get the user ID from the query
     const { userId } = req.query;
     const { currentUser } = await serverAuth(req);
-
+    
     const validUserId = userId as string;
 
+    // get conversation between the current user and the specified user ID
     const conversation = await prisma.privateMessage.findMany({
       where: {
         OR: [
@@ -42,11 +49,14 @@ export default async function handler(
     });
 
     res.status(200).json(conversation);
-  } else if (req.method === "PUT") {
+  } 
+  // if the request method is PUT, create a new conversation
+  else if (req.method === "PUT") {
     const { userId } = req.query;
     const { currentUser } = await serverAuth(req);
     const validUserId = userId as string;
 
+    // check if a conversation already exists between the current user and the specified user ID
     const conversationExists = await prisma.privateMessage.findFirst({
       where: {
         OR: [
@@ -56,6 +66,7 @@ export default async function handler(
       },
     });
 
+    // if a conversation does not exist, create a new one
     if (!conversationExists) {
       const emptyConversationData: Prisma.PrivateMessageCreateInput = {
         sender: {

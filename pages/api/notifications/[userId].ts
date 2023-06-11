@@ -5,17 +5,18 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // Only allow GET requests
   if (req.method !== "GET") {
     return res.status(405).end();
   }
 
   try {
     const { userId } = req.query;
-
     if (!userId || typeof userId !== "string") {
       throw new Error("Invalid ID");
     }
 
+    // Get notifications for the specific user
     const notifications = await prisma.notification.findMany({
       where: {
         userId,
@@ -29,6 +30,7 @@ export default async function handler(
       },
     });
 
+    // Update the user's hasNotification field to false - no more notifications
     await prisma.user.update({
       where: {
         id: userId,

@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import serverAuth from "@/libs/serverAuth";
 import prisma from "@/libs/prismadb";
-import Image from "next/image";
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,9 +9,11 @@ export default async function handler(
   if (req.method === "POST") {
     // Create a new post
     try {
+      // Get the current user
       const { currentUser } = await serverAuth(req);
       const { body, imageUrl } = req.body;
 
+      // Check if the body is valid
       const post = await prisma.post.create({
         data: {
           body,
@@ -20,7 +21,7 @@ export default async function handler(
           userId: currentUser.id,
         },
       });
-
+      
       return res.status(200).json(post);
     } catch (err) {
       console.log(err);
@@ -29,11 +30,14 @@ export default async function handler(
   } else if (req.method === "GET") {
     // Retrieve posts
     try {
+      // Get the user ID from the query
       const { userId } = req.query;
 
+      // Get posts
       let posts;
-
+      
       if (userId && typeof userId === "string") {
+        // Get posts by user ID - used for profile pages
         posts = await prisma.post.findMany({
           where: {
             userId,
@@ -46,7 +50,9 @@ export default async function handler(
             createdAt: "desc",
           },
         });
-      } else {
+      } 
+      // else show all posts - used for the home page
+      else {
         posts = await prisma.post.findMany({
           include: {
             user: true,

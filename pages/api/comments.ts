@@ -7,19 +7,24 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // Only allow POST requests
   if (req.method !== "POST") {
     return res.status(405).end();
   }
 
   try {
+    // Get the current user
     const { currentUser } = await serverAuth(req);
+    // Destructure the body and query
     const { body } = req.body;
     const { postId } = req.query;
 
+    // Check if the body is valid
     if (!postId || typeof postId !== "string") {
       throw new Error("Invalid ID");
     }
 
+    // Create the comment
     const comment = await prisma.comment.create({
       data: {
         body,
@@ -28,6 +33,7 @@ export default async function handler(
       },
     });
 
+    // Find post author and create notification
     try {
       const post = await prisma.post.findUnique({
         where: {

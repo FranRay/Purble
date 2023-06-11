@@ -24,7 +24,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     },
     [onChange]
   );
-
+  
+  // This is the function that is called when the user drops an image into the field
   const handleDrop = useCallback(
     (files: any) => {
       const file = files[0];
@@ -40,6 +41,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     [handleChange]
   );
 
+  // This is the function that is called when the user clicks on the field
   const { getRootProps, getInputProps } = useDropzone({
     maxFiles: 1,
     onDrop: handleDrop,
@@ -50,6 +52,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     },
   });
 
+  // render image upload field with image preview
   return (
     <div
       {...getRootProps({

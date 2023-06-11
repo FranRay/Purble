@@ -7,6 +7,7 @@ import NotificationsFeed from "@/components/notifications/NotificationsFeed";
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
 
+  // If the user is not logged in, redirect to the homepage
   if (!session) {
     return {
       redirect: {
@@ -16,6 +17,7 @@ export async function getServerSideProps(context: NextPageContext) {
     };
   }
 
+  // If the user is logged in, return their session as a prop
   return {
     props: {
       session,
@@ -23,6 +25,7 @@ export async function getServerSideProps(context: NextPageContext) {
   };
 }
 
+// This page is only accessible to logged in users
 const Notifications = () => {
   return (
     <>

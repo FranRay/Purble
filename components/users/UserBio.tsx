@@ -17,17 +17,20 @@ interface UserBioProps {
   userId: string;
 }
 
+// user profile bio template
 const UserBio: React.FC<UserBioProps> = ({ userId }) => {
   const { data: currentUser } = useCurrentUser();
   const { data: fetchedUser } = useUser(userId);
-
   const router = useRouter();
 
+  // modals
   const editModal = useEditModal();
   const followersModal = useFollowListModal();
 
+  // follow/unfollow user button
   const { isFollowing, toggleFollow } = useFollow(userId);
 
+  // create conversation and navigate to messages
   const createConversationAndNavigate = async () => {
     if (currentUser) {
       try {
@@ -39,6 +42,7 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
     }
   };
 
+  // calculate date joined
   const createdAt = useMemo(() => {
     if (!fetchedUser?.createdAt) {
       return null;
@@ -47,6 +51,7 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
     return format(new Date(fetchedUser.createdAt), "MMMM yyyy");
   }, [fetchedUser?.createdAt]);
 
+  // render user bio
   return (
     <div className="bg-white pb-6 px-3 rounded-xl">
       <div className="flex justify-end gap-2 p-2">

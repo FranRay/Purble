@@ -79,9 +79,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
         console.log(res)
         }
       );
-
       
-
       toast.success("Post Created");
 
       // Reset the form and update the posts

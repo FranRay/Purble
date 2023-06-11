@@ -6,6 +6,7 @@ interface InputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+// input field template
 const Input: React.FC<InputProps> = ({
   placeholder,
   value,

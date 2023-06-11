@@ -7,34 +7,44 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+
+  // Only allow a POST or DELETE request
   if (req.method !== "POST" && req.method !== "DELETE") {
     return res.status(405).end();
   }
-
+  
   try {
-    const { postId } = req.body;
+    // Destructure the postId from the body
+    const { postId } = req.body; 
 
+    // Get the current user
     const { currentUser } = await serverAuth(req);
 
+    // Check if the postId is valid
     if (!postId || typeof postId !== "string") {
       throw new Error("Invalid ID");
     }
 
+    // Get the post with the postId using Prisma
     const post = await prisma.post.findUnique({
       where: {
         id: postId,
       },
     });
 
+    // Check if the post exists, if not throw an error
     if (!post) {
       throw new Error("Invalid ID");
     }
 
+    // Create a copy of the existing likedIds array from the post, or initialize it as an empty array
     let updatedLikedIds = [...(post.likedIds || [])];
 
+    // Like, Add the current user's id to the updatedLikedIds array
     if (req.method === "POST") {
       updatedLikedIds.push(currentUser.id);
 
+      // Find post author and create notification
       try {
         const post = await prisma.post.findUnique({
           where: {
@@ -67,12 +77,14 @@ export default async function handler(
       }
     }
 
+    // Unlike, Remove the current user's id from the updatedLikedIds array
     if (req.method === "DELETE") {
       updatedLikedIds = updatedLikedIds.filter(
         (likedId) => likedId !== currentUser.id
       );
     }
 
+    // Update the post with the updatedLikedIds array
     const updatedPost = await prisma.post.update({
       where: {
         id: postId,

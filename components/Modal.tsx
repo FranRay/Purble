@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import Button from "./Button";
 
+// modal template
 interface ModalProps {
   isOpen?: boolean;
   onClose: () => void;
@@ -42,7 +43,8 @@ const Modal: React.FC<ModalProps> = ({
   if (!isOpen) {
     return null;
   }
-
+  
+  // render modal if isOpen is true
   return (
     <>
       <div

@@ -12,8 +12,10 @@ const PostView = () => {
   const router = useRouter();
   const { postId } = router.query;
 
+  // Fetch the post's data
   const { data: fetchedPost, isLoading } = usePost(postId as string);
 
+  // If the post data is loading or hasn't been fetched yet, show a loading spinner
   if (isLoading || !fetchedPost) {
     return (
       <div className="flex justify-center items-center h-full">
@@ -22,6 +24,7 @@ const PostView = () => {
     );
   }
 
+  // If the post data has been fetched, render the post
   return (
     <>
       <Header label="Post" showBackArrow />

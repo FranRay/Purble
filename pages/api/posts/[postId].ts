@@ -6,6 +6,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+
+  // Only allow GET requests
   if (req.method !== "GET") {
     return res.status(405).end();
   }
@@ -17,6 +19,7 @@ export default async function handler(
       throw new Error("Invalid ID");
     }
 
+    // Get the post
     const post = await prisma.post.findUnique({
       where: {
         id: postId,

@@ -11,6 +11,7 @@ interface AvatarProps {
   useDefaultClick?: boolean;
 }
 
+// profile image template
 const Avatar: React.FC<AvatarProps> = ({
   userId,
   isLarge,
@@ -33,6 +34,7 @@ const Avatar: React.FC<AvatarProps> = ({
     [router, userId, useDefaultClick]
   );
 
+  // render profile image
   return (
     <div
       className={`

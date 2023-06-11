@@ -9,12 +9,15 @@ interface HeaderProps {
   showBackArrow?: boolean;
 }
 
+// header template
 const Header: React.FC<HeaderProps> = ({ label, showBackArrow }) => {
   const router = useRouter();
 
   const handleBack = useCallback(() => {
     router.back();
   }, [router]);
+
+  // render header, with back arrow if showBackArrow is true
   return (
     <div className="bg-white p-5 rounded-2xl my-5">
       <div className="flex flex-row items-center gap-2">
