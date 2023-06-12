@@ -172,7 +172,7 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
           </div>
         </div>
       ) : (
-        <div className="py-8">
+        <div className="py-8 w-full">
           {/* <h1
             className="
             text-[#475885]
@@ -184,13 +184,14 @@ const Form: React.FC<FormProps> = ({ placeholder, isComment, postId }) => {
           >
             PURBLE
           </h1> */}
-          <Image 
-            width={900}
-            height={900}
-            alt="Splash" 
-            src={"/images/splash.png"}
-            className="mb-5 rounded-xl"
-          />
+            <Image 
+              width={900}
+              height={900}
+              alt="Splash" 
+              src={"/images/splash.png"}
+              className="mb-5 rounded-xl mx-auto"
+            />
+          
           <div className="flex flex-row items-center justify-end gap-4">
             <Button label="Login" onClick={loginModal.onOpen} secondary />
             <Button label="Register" onClick={registerModal.onOpen} outline />
